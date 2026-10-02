@@ -1,0 +1,176 @@
+{
+  "data_yaml": "F:\\video\\data\\noleak\\video_data_noleak.yaml",
+  "thresholds": {
+    "T": 25,
+    "T1": 160,
+    "T2": 3,
+    "T3": 5,
+    "buffer": 5,
+    "conf": 0.3,
+    "imgsz": 480
+  },
+  "train_command": [
+    "python run/train_noleak_suite.py --amp --batch 16 --workers 8 --keep-going",
+    "per-job epochs: ablation 50, VideoPlay stopped ~60, SOTA 50 in this finish pass"
+  ],
+  "infer_motion_command": "python run/run_detect.py --model <openvino_best_stem> --video <mp4> --video-name <id> --output <json>",
+  "openvino_export": "F:\\video\\runs\\noleak100\\abl_videoplay\\weights\\best_int8_openvino_model",
+  "motion_eval": [
+    {
+      "case": "Video1_Webpage",
+      "mAP50_95": 0.7936115658864004,
+      "mAP50": 0.8228759130829284,
+      "n_pred": 880,
+      "n_gt_images": 882,
+      "fps": 93.157089977001,
+      "e2e_ms": 10.734556009069026
+    },
+    {
+      "case": "Video2_Bilibili",
+      "mAP50_95": 0.9465346534653465,
+      "mAP50": 0.9504950495049505,
+      "n_pred": 424,
+      "n_gt_images": 442,
+      "fps": 100.82425424638713,
+      "e2e_ms": 9.91824841626174
+    },
+    {
+      "case": "Video3_Excel",
+      "mAP50_95": 0.8871241502030387,
+      "mAP50": 0.8910891089108911,
+      "n_pred": 667,
+      "n_gt_images": 726,
+      "fps": 115.2983377048069,
+      "e2e_ms": 8.67315192835004
+    },
+    {
+      "case": "Video4_PPT",
+      "mAP50_95": 0.8892071867202488,
+      "mAP50": 0.9814596236952857,
+      "n_pred": 1382,
+      "n_gt_images": 1348,
+      "fps": 34.85076105707679,
+      "e2e_ms": 28.693777974095067
+    }
+  ],
+  "sota_train_exit": 0,
+  "sota_eval": [
+    {
+      "name": "sota_yolov8n",
+      "image_test_mAP50_95": 0.9919146169746197,
+      "official_videos": [
+        {
+          "case": "Video1_Webpage",
+          "n_frames": 882,
+          "mAP50_95": 0.7744618768046537,
+          "mAP50": 0.776507658485478,
+          "n_pred": 3856,
+          "n_gt_images": 882
+        },
+        {
+          "case": "Video2_Bilibili",
+          "n_frames": 442,
+          "mAP50_95": 0.9900990099009901,
+          "mAP50": 0.9900990099009901,
+          "n_pred": 441,
+          "n_gt_images": 442
+        },
+        {
+          "case": "Video3_Excel",
+          "n_frames": 726,
+          "mAP50_95": 1.0,
+          "mAP50": 1.0,
+          "n_pred": 726,
+          "n_gt_images": 726
+        },
+        {
+          "case": "Video4_PPT",
+          "n_frames": 1698,
+          "mAP50_95": 0.9828857548733174,
+          "mAP50": 0.9884936451136195,
+          "n_pred": 1696,
+          "n_gt_images": 1348
+        }
+      ],
+      "mean_mAP50_95": 0.9368616603947403
+    },
+    {
+      "name": "sota_yolo11n",
+      "image_test_mAP50_95": 0.9916999811493946,
+      "official_videos": [
+        {
+          "case": "Video1_Webpage",
+          "n_frames": 882,
+          "mAP50_95": 0.7569086025321278,
+          "mAP50": 0.7571586297927448,
+          "n_pred": 4025,
+          "n_gt_images": 882
+        },
+        {
+          "case": "Video2_Bilibili",
+          "n_frames": 442,
+          "mAP50_95": 0.9900990099009901,
+          "mAP50": 0.9900990099009901,
+          "n_pred": 441,
+          "n_gt_images": 442
+        },
+        {
+          "case": "Video3_Excel",
+          "n_frames": 726,
+          "mAP50_95": 1.0,
+          "mAP50": 1.0,
+          "n_pred": 726,
+          "n_gt_images": 726
+        },
+        {
+          "case": "Video4_PPT",
+          "n_frames": 1698,
+          "mAP50_95": 0.9586525768459044,
+          "mAP50": 0.9692229556369664,
+          "n_pred": 1521,
+          "n_gt_images": 1348
+        }
+      ],
+      "mean_mAP50_95": 0.9264150473197555
+    },
+    {
+      "name": "sota_yolov10n",
+      "image_test_mAP50_95": 0.9929073143604038,
+      "official_videos": [
+        {
+          "case": "Video1_Webpage",
+          "n_frames": 882,
+          "mAP50_95": 0.7159322840992589,
+          "mAP50": 0.7185323040052403,
+          "n_pred": 4078,
+          "n_gt_images": 882
+        },
+        {
+          "case": "Video2_Bilibili",
+          "n_frames": 442,
+          "mAP50_95": 0.9900990099009901,
+          "mAP50": 0.9900990099009901,
+          "n_pred": 441,
+          "n_gt_images": 442
+        },
+        {
+          "case": "Video3_Excel",
+          "n_frames": 726,
+          "mAP50_95": 0.9997811683994332,
+          "mAP50": 0.9997811683994333,
+          "n_pred": 743,
+          "n_gt_images": 726
+        },
+        {
+          "case": "Video4_PPT",
+          "n_frames": 1698,
+          "mAP50_95": 0.9722864804044633,
+          "mAP50": 0.9722864804044633,
+          "n_pred": 1477,
+          "n_gt_images": 1348
+        }
+      ],
+      "mean_mAP50_95": 0.9195247357010363
+    }
+  ]
+}

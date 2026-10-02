@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "videoplay"
+version = "1.0.0"
+description = "Playing-region detection for mixed screen content: compact YOLO11 detector, temporal confirmation, OpenVINO INT8 inference."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "AGPL-3.0-or-later" }
+authors = [
+    { name = "Wenxi Zhao" },
+    { name = "Jiazhen Zhu" },
+    { name = "Yufan Ye" },
+    { name = "Changcai Lai", email = "cclai@hdu.edu.cn" },
+]
+dependencies = [
+    "numpy>=1.23.0",
+    "opencv-python>=4.8.0",
+    "openvino>=2023.0.0",
+    "PyYAML>=6.0",
+    "psutil",
+    "Pillow>=9.0.0",
+]
+
+[project.optional-dependencies]
+train = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "matplotlib>=3.7.0",
+    "pandas>=2.0.0",
+    "scipy>=1.10.0",
+    "tqdm>=4.66.0",
+    "seaborn>=0.12.0",
+    "requests>=2.23.0",
+    "polars",
+    "ultralytics-thop>=2.0.18",
+    "nncf",
+]
+eval = ["pycocotools"]
+dev = ["pytest>=7.0.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

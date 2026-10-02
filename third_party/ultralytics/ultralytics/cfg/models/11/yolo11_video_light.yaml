@@ -1,0 +1,35 @@
+# Ultralytics YOLO - 轻量化版本（通道减半）
+# 基于 yolo11_video_1104.yaml，通道数减半
+
+# Parameters
+nc: 1 # number of classes
+scales:
+  # [depth, width, max_channels]
+  n: [0.50, 0.25, 1024]
+
+# 轻量化 backbone（通道数减半：16→8, 32→16, 64→32, 128→64, 256→128）
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, DWConv, [8, 3, 2]]    # 0-P1/2  (原16→8)
+  - [-1, 1, DWConv, [16, 3, 2]]   # 1-P2/4  (原32→16)
+  - [-1, 2, C3k2, [32, False, 0.25]]       # (原64→32)
+  - [-1, 1, DWConv, [32, 3, 2]]   # 3-P3/8  (原64→32)
+  - [-1, 2, C3k2, [64, False, 0.25]]       # (原128→64)
+  - [-1, 1, DWConv, [64, 3, 2]]   # 5-P4/16 (原128→64)
+  - [-1, 2, C3k2, [64, True]]              # (原128→64)
+  - [-1, 1, DWConv, [128, 3, 2]]  # 7-P5/32 (原256→128)
+  - [-1, 2, C3k2, [128, True]]             # (原256→128)
+  - [-1, 1, SPPF, [128, 5]]       # 9       (原256→128)
+
+# 轻量化 head（通道数减半）
+head:
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]
+  - [[-1, 6], 1, Concat, [1]]     # cat backbone P4
+  - [-1, 2, C3k2, [64, False]]    # 12      (原128→64)
+
+  - [-1, 1, DWConv, [64, 3, 2]]             # (原128→64)
+  - [[-1, 9], 1, Concat, [1]]     # cat head P5
+  - [-1, 2, C3k2, [128, True]]    # 15 (P5/32-large) (原256→128)
+
+  - [[12, 15], 1, Detect, [nc]]   # Detect(P4, P5)
+

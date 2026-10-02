@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below. Also cite Ultralytics as described in THIRD_PARTY_NOTICES.md.
+title: "VideoPlay: Lightweight Video-Region Localization and Temporal Playback Confirmation in Mixed Screen Content"
+version: "1.0.0"
+date-released: "2026-10-02"
+license: AGPL-3.0-or-later
+type: software
+authors:
+  - family-names: Zhao
+    given-names: Wenxi
+    affiliation: Hangzhou Dianzi University
+  - family-names: Zhu
+    given-names: Jiazhen
+    affiliation: Hangzhou Dianzi University
+  - family-names: Ye
+    given-names: Yufan
+    affiliation: Hangzhou Dianzi University
+  - family-names: Lai
+    given-names: Changcai
+    affiliation: Hangzhou Dianzi University
+    email: cclai@hdu.edu.cn
+identifiers: []
+keywords:
+  - mixed screen content
+  - video-region detection
+  - OpenVINO
+notes: >
+  Associated manuscript: IET Image Processing, manuscript IPR-2026-03-0268,
+  currently under revision. Do not treat this CITATION.cff as a published
+  journal article. A DOI will be added only after publication.

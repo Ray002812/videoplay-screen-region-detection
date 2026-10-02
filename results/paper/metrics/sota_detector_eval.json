@@ -1,0 +1,119 @@
+[
+  {
+    "name": "sota_yolov8n",
+    "image_test_mAP50_95": 0.9919146169746197,
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "mAP50_95": 0.7744618768046537,
+        "mAP50": 0.776507658485478,
+        "n_pred": 3856,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_pred": 441,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "mAP50_95": 1.0,
+        "mAP50": 1.0,
+        "n_pred": 726,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "mAP50_95": 0.9828857548733174,
+        "mAP50": 0.9884936451136195,
+        "n_pred": 1696,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.9368616603947403
+  },
+  {
+    "name": "sota_yolo11n",
+    "image_test_mAP50_95": 0.9916999811493946,
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "mAP50_95": 0.7569086025321278,
+        "mAP50": 0.7571586297927448,
+        "n_pred": 4025,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_pred": 441,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "mAP50_95": 1.0,
+        "mAP50": 1.0,
+        "n_pred": 726,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "mAP50_95": 0.9586525768459044,
+        "mAP50": 0.9692229556369664,
+        "n_pred": 1521,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.9264150473197555
+  },
+  {
+    "name": "sota_yolov10n",
+    "image_test_mAP50_95": 0.9929073143604038,
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "mAP50_95": 0.7159322840992589,
+        "mAP50": 0.7185323040052403,
+        "n_pred": 4078,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_pred": 441,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "mAP50_95": 0.9997811683994332,
+        "mAP50": 0.9997811683994333,
+        "n_pred": 743,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "mAP50_95": 0.9722864804044633,
+        "mAP50": 0.9722864804044633,
+        "n_pred": 1477,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.9195247357010363
+  }
+]

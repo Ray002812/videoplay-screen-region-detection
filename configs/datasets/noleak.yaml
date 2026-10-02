@@ -1,0 +1,9 @@
+# Relative dataset layout after running scripts/prepare_dataset.py.
+# Replace path with the generated dataset root on the training machine.
+path: data/processed/noleak
+train: images/train
+val: images/val
+test: images/test
+nc: 1
+names:
+  0: video

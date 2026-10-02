@@ -1,0 +1,14 @@
+{
+  "best.xml": {
+    "bytes": 501880,
+    "sha256": "c816209686f6edb48f85303a066ad0d9c8696ba865f9a5849115c00923d1567c"
+  },
+  "best.bin": {
+    "bytes": 133960,
+    "sha256": "326c49cfb28388c6af54474e30c525fa32fa6e2c1c07eee36b11efd59f6e8c30"
+  },
+  "metadata.yaml": {
+    "bytes": 464,
+    "sha256": "1879013e08f24c9ff56e146b49eb275dc06310491fdf07cdbdd4a831baef35f2"
+  }
+}

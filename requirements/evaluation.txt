@@ -1,0 +1,2 @@
+-r inference.txt
+pycocotools

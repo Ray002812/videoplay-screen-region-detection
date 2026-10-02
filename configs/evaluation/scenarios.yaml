@@ -1,0 +1,34 @@
+# Held-out screen-recording evaluation used for paper tables.
+# Videos are not stored in this repository. Place them locally and set video paths
+# with --video-root or by editing the video field.
+frame_index_start: 1
+class_name: video
+category_id: 1
+scenarios:
+  - id: webpage
+    display_name: Webpage
+    paper_name: Video1_Webpage
+    video: 20240509_160438.mp4
+    annotation: data/sample/annotations/webpage.json
+    image_id_prefix: "20240509_160438"
+  - id: bilibili
+    display_name: Bilibili
+    paper_name: Video2_Bilibili
+    video: 20240509_151154.mp4
+    annotation: data/sample/annotations/bilibili.json
+    image_id_prefix: "20240509_151154"
+  - id: excel
+    display_name: Excel
+    paper_name: Video3_Excel
+    video: 20240509_160140.mp4
+    annotation: data/sample/annotations/excel.json
+    image_id_prefix: "20240509_160140"
+  - id: ppt
+    display_name: PPT
+    paper_name: Video4_PPT
+    video: 01.mp4
+    annotation: data/sample/annotations/ppt.json
+    image_id_prefix: "20250125_1"
+    notes: >
+      Paper evaluation uses this annotation (1348 images, 1304 boxes).
+      A larger similarly named JSON exists in the local archive and is not this file.

@@ -1,0 +1,6 @@
+numpy>=1.23.0
+opencv-python>=4.8.0
+openvino>=2023.0.0
+PyYAML>=6.0
+psutil
+Pillow>=9.0.0

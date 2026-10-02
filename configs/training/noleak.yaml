@@ -1,0 +1,51 @@
+# Training settings matching the no-leak suite. Dataset path is supplied at runtime.
+epochs: 300
+imgsz: 480
+batch: 16
+device: 0
+workers: 4
+patience: 20
+amp: true
+seed: 0
+deterministic: true
+close_mosaic: 10
+single_cls: true
+pretrained: true
+project: outputs/train
+jobs:
+  - name: videoplay
+    legacy_id: abl_videoplay
+    model: configs/models/videoplay.yaml
+    kind: ablation
+  - name: baseline_yolov8n
+    legacy_id: sota_yolov8n
+    model: yolov8n.pt
+    kind: sota
+  - name: baseline_yolo11n
+    legacy_id: sota_yolo11n
+    model: yolo11n.pt
+    kind: sota
+  - name: baseline_yolov10n
+    legacy_id: sota_yolov10n
+    model: yolov10n.pt
+    kind: sota
+  - name: ablation_half_channels
+    legacy_id: abl_ch14
+    model: configs/models/ablation_half_channels.yaml
+    kind: ablation
+  - name: ablation_relu
+    legacy_id: abl_relu
+    model: configs/models/yolo11_ablation_relu.yaml
+    kind: ablation
+  - name: ablation_baseline
+    legacy_id: abl_baseline
+    model: configs/models/yolo11_ablation_baseline.yaml
+    kind: ablation
+  - name: ablation_no_p3
+    legacy_id: abl_nop3
+    model: configs/models/yolo11_ablation_nop3.yaml
+    kind: ablation
+  - name: ablation_dwconv
+    legacy_id: abl_dwconv
+    model: configs/models/yolo11_ablation_dwconv.yaml
+    kind: ablation

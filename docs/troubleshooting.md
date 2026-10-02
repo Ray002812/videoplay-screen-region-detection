@@ -1,0 +1,16 @@
+# Troubleshooting
+
+**ImportError: ultralytics**  
+Run the scripts from this repository so `scripts/_bootstrap.py` can add `third_party/ultralytics`. Do not rely on a random PyPI wheel.
+
+**Wrong boxes compared with the paper**  
+Check that `--model` points at `weights/videoplay-v1.0/openvino-int8/best` and that motion is enabled unless you are measuring detector-only AP.
+
+**COCO image_id mismatch**  
+`--video-name` must equal the scene `image_id_prefix`. PPT uses `20250125_1`, not `01`.
+
+**prepare_dataset deleted train images**  
+That happens only with `--apply`, and only for train files whose SHA-256 appears in val or test. Use the dry run first.
+
+**openvino-dev vs openvino**  
+Inference needs the `openvino` package. `openvino-dev` is not required for `scripts/infer_video.py`.

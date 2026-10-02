@@ -1,0 +1,22 @@
+description: Ultralytics YOLO11_video_1104 model trained on F:\video\data\noleak\video_data_noleak.yaml
+author: Ultralytics
+date: '2026-09-21T18:24:08.012588'
+version: 8.3.223
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 480
+- 480
+names:
+  0: item
+args:
+  batch: 1
+  fraction: 1.0
+  half: false
+  int8: true
+  dynamic: false
+  nms: false
+channels: 3

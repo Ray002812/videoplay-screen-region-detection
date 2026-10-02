@@ -1,0 +1,38 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# YOLO11 视频检测模型 - 12_14版本
+# 修改：通道数1/2，部分恢复标准卷积，移除P3检测头，使用ReLU激活
+
+# Parameters
+nc: 1 # number of classes
+scales:
+  # [depth, width, max_channels]
+  n: [0.50, 0.50, 1024]  # width=0.50 实现1/2通道数
+
+# 激活函数：代码已默认使用ReLU (Conv.default_act = nn.ReLU())
+
+# YOLO11n backbone - 通道数1/2，部分恢复标准卷积
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, Conv, [32, 3, 2]]   # 0-P1/2   标准卷积（恢复）
+  - [-1, 1, Conv, [64, 3, 2]]   # 1-P2/4   标准卷积（恢复）
+  - [-1, 2, C3k2, [128, False, 0.25]]
+  - [-1, 1, Conv, [128, 3, 2]]  # 3-P3/8   标准卷积（恢复）
+  - [-1, 2, C3k2, [256, False, 0.25]]
+  - [-1, 1, DWConv, [256, 3, 2]] # 5-P4/16  深度可分离卷积
+  - [-1, 2, C3k2, [256, True]]
+  - [-1, 1, DWConv, [512, 3, 2]] # 7-P5/32  深度可分离卷积
+  - [-1, 2, C3k2, [512, True]]
+  - [-1, 1, SPPF, [512, 5]]      # 9
+
+# YOLO11n head - 只保留P4和P5检测头
+head:
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]
+  - [[-1, 6], 1, Concat, [1]]    # cat backbone P4
+  - [-1, 2, C3k2, [256, False]]  # 12
+
+  - [-1, 1, DWConv, [256, 3, 2]]
+  - [[-1, 9], 1, Concat, [1]]    # cat head P5
+  - [-1, 2, C3k2, [512, True]]   # 15 (P5/32-large)
+
+  - [[12, 15], 1, Detect, [nc]]  # Detect(P4, P5) - 无P3
+

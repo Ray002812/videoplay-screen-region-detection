@@ -1,0 +1,44 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Local editor settings
+.idea/
+.vscode/
+.cursor/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Credentials and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated experiments and local downloads
+/outputs/
+/runs/
+/weights/downloads/
+/data/raw/
+/data/processed/
+/data/downloads/
+
+# Packaging output
+/dist/
+/build/
+*.egg-info/
+
+# Generated LaTeX files
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc

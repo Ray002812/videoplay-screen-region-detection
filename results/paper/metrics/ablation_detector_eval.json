@@ -1,0 +1,290 @@
+[
+  {
+    "name": "abl_baseline",
+    "best": "F:\\video\\runs\\noleak100\\abl_baseline\\weights\\best.pt",
+    "image_test": {
+      "metrics/precision(B)": 0.9922755477035322,
+      "metrics/recall(B)": 0.9989502284796838,
+      "metrics/mAP50(B)": 0.9917168407876129,
+      "metrics/mAP50-95(B)": 0.9909570250571468,
+      "fitness": 0.9909570250571468
+    },
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "n_pred": 4054,
+        "mAP50_95": 0.7346743841113935,
+        "mAP50": 0.7349485506132613,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "n_pred": 441,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "n_pred": 728,
+        "mAP50_95": 1.0,
+        "mAP50": 1.0,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "n_pred": 1832,
+        "mAP50_95": 0.9455528973306097,
+        "mAP50": 0.9568771182844259,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.9175815728357484
+  },
+  {
+    "name": "abl_nop3",
+    "best": "F:\\video\\runs\\noleak100\\abl_nop3\\weights\\best.pt",
+    "image_test": {
+      "metrics/precision(B)": 0.9952159235657655,
+      "metrics/recall(B)": 0.9885142645424231,
+      "metrics/mAP50(B)": 0.9933280205776469,
+      "metrics/mAP50-95(B)": 0.9921325427736065,
+      "fitness": 0.9921325427736065
+    },
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "n_pred": 4218,
+        "mAP50_95": 0.7297060530421399,
+        "mAP50": 0.7336776096929747,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "n_pred": 441,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "n_pred": 726,
+        "mAP50_95": 1.0,
+        "mAP50": 1.0,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "n_pred": 1895,
+        "mAP50_95": 0.9526290673265323,
+        "mAP50": 0.9526290673265323,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.9181085325674155
+  },
+  {
+    "name": "abl_ch14",
+    "best": "F:\\video\\runs\\noleak100\\abl_ch14\\weights\\best.pt",
+    "image_test": {
+      "metrics/precision(B)": 0.9858669260479002,
+      "metrics/recall(B)": 0.9964184265777448,
+      "metrics/mAP50(B)": 0.988708728287342,
+      "metrics/mAP50-95(B)": 0.9861605013869831,
+      "fitness": 0.9861605013869831
+    },
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "n_pred": 4067,
+        "mAP50_95": 0.795867509515328,
+        "mAP50": 0.7964142684182436,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "n_pred": 441,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "n_pred": 736,
+        "mAP50_95": 1.0,
+        "mAP50": 1.0,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "n_pred": 1589,
+        "mAP50_95": 0.9769017965117057,
+        "mAP50": 0.9769017965117058,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.940717078982006
+  },
+  {
+    "name": "abl_dwconv",
+    "best": "F:\\video\\runs\\noleak100\\abl_dwconv\\weights\\best.pt",
+    "image_test": {
+      "metrics/precision(B)": 0.9913495298603948,
+      "metrics/recall(B)": 0.9978196947435999,
+      "metrics/mAP50(B)": 0.9911290939942002,
+      "metrics/mAP50-95(B)": 0.9899862195324864,
+      "fitness": 0.9899862195324864
+    },
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "n_pred": 4203,
+        "mAP50_95": 0.726899838854246,
+        "mAP50": 0.7279329187606982,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "n_pred": 441,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "n_pred": 726,
+        "mAP50_95": 1.0,
+        "mAP50": 1.0,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "n_pred": 1511,
+        "mAP50_95": 0.9603885735629519,
+        "mAP50": 0.9603885735629519,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.919346855579547
+  },
+  {
+    "name": "abl_relu",
+    "best": "F:\\video\\runs\\noleak100\\abl_relu\\weights\\best.pt",
+    "image_test": {
+      "metrics/precision(B)": 0.9921407052295538,
+      "metrics/recall(B)": 0.9978046545387991,
+      "metrics/mAP50(B)": 0.9932911764032714,
+      "metrics/mAP50-95(B)": 0.9924595266619495,
+      "fitness": 0.9924595266619495
+    },
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "n_pred": 3995,
+        "mAP50_95": 0.7590359886669388,
+        "mAP50": 0.7593190551989142,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "n_pred": 441,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "n_pred": 726,
+        "mAP50_95": 1.0,
+        "mAP50": 1.0,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "n_pred": 1472,
+        "mAP50_95": 0.9392574042828201,
+        "mAP50": 0.93925740428282,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.9220981007126873
+  },
+  {
+    "name": "abl_videoplay",
+    "best": "F:\\video\\runs\\noleak100\\abl_videoplay\\weights\\best.pt",
+    "image_test": {
+      "metrics/precision(B)": 0.9570079067976861,
+      "metrics/recall(B)": 0.9787072247957231,
+      "metrics/mAP50(B)": 0.9882217989396707,
+      "metrics/mAP50-95(B)": 0.9400063580270034,
+      "fitness": 0.9400063580270034
+    },
+    "official_videos": [
+      {
+        "case": "Video1_Webpage",
+        "n_frames": 882,
+        "n_pred": 4349,
+        "mAP50_95": 0.7200003245894183,
+        "mAP50": 0.7308384463664411,
+        "n_gt_images": 882
+      },
+      {
+        "case": "Video2_Bilibili",
+        "n_frames": 442,
+        "n_pred": 441,
+        "mAP50_95": 0.9900990099009901,
+        "mAP50": 0.9900990099009901,
+        "n_gt_images": 442
+      },
+      {
+        "case": "Video3_Excel",
+        "n_frames": 726,
+        "n_pred": 1362,
+        "mAP50_95": 0.9987335649452795,
+        "mAP50": 1.0,
+        "n_gt_images": 726
+      },
+      {
+        "case": "Video4_PPT",
+        "n_frames": 1698,
+        "n_pred": 3364,
+        "mAP50_95": 0.8503482144370577,
+        "mAP50": 0.9457580203281493,
+        "n_gt_images": 1348
+      }
+    ],
+    "mean_mAP50_95": 0.8897952784681864
+  },
+  {
+    "name": "sota_yolov8n",
+    "error": "missing best.pt"
+  },
+  {
+    "name": "sota_yolo11n",
+    "error": "missing best.pt"
+  },
+  {
+    "name": "sota_yolov10n",
+    "error": "missing best.pt"
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "release_id": "videoplay-v1.0",
+  "display_name": "VideoPlay-YOLO11 OpenVINO INT8",
+  "task": "detect",
+  "class_names": ["item"],
+  "notes": "Ultralytics export names the class item; evaluation annotations use category_id 1 for the video region.",
+  "files": {
+    "best.xml": {
+      "path": "weights/videoplay-v1.0/openvino-int8/best.xml",
+      "bytes": 501880,
+      "sha256": "c816209686f6edb48f85303a066ad0d9c8696ba865f9a5849115c00923d1567c"
+    },
+    "best.bin": {
+      "path": "weights/videoplay-v1.0/openvino-int8/best.bin",
+      "bytes": 133960,
+      "sha256": "326c49cfb28388c6af54474e30c525fa32fa6e2c1c07eee36b11efd59f6e8c30"
+    },
+    "metadata.yaml": {
+      "path": "weights/videoplay-v1.0/openvino-int8/metadata.yaml",
+      "bytes": 464,
+      "sha256": "1879013e08f24c9ff56e146b49eb275dc06310491fdf07cdbdd4a831baef35f2"
+    }
+  },
+  "input": {
+    "layout": "NCHW",
+    "dtype": "float32",
+    "shape": [1, 3, 480, 480],
+    "color": "RGB",
+    "scale": "1/255",
+    "letterbox": {
+      "size": 480,
+      "pad_value": 114
+    }
+  },
+  "output": {
+    "format": "YOLO11 detect",
+    "dtype": "float32"
+  },
+  "export": {
+    "toolkit": "Ultralytics 8.3.223 local fork in third_party/ultralytics",
+    "format": "openvino",
+    "int8": true,
+    "imgsz": 480,
+    "half": false,
+    "nms": false
+  },
+  "training": {
+    "config": "configs/models/videoplay.yaml",
+    "legacy_run": "runs/noleak100/abl_videoplay",
+    "dataset_yaml": "source-disjoint no-leak split (not stored in this repository)"
+  },
+  "evaluation": {
+    "scenarios": "configs/evaluation/scenarios.yaml",
+    "metrics": "results/paper/metrics/videoplay_motion_eval.json"
+  },
+  "runtime": {
+    "primary": "OpenVINO CPU",
+    "os": ["Windows 11", "Linux"]
+  }
+}

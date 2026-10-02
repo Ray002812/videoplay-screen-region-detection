@@ -1,0 +1,12 @@
+model: weights/videoplay-v1.0/openvino-int8/best
+device: CPU
+imgsz: 480
+conf: 0.3
+iou: 0.5
+T: 25
+T1: 160.0
+T2: 3
+T3: 5
+buffer_size: 5
+motion: true
+threads: 0

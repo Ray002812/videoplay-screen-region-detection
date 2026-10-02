@@ -1,0 +1,4 @@
+iou_type: bbox
+report_ap: true
+report_ap50: true
+report_f1: true
