@@ -1,34 +1,51 @@
-# Held-out screen-recording evaluation used for paper tables.
-# Videos are not stored in this repository. Place them locally and set video paths
-# with --video-root or by editing the video field.
+# Evaluation scenes for the paper tables.
+# Display names follow the manuscript image records. legacy_case_id is the
+# identifier used in the original evaluation scripts and is not the display name.
 frame_index_start: 1
 class_name: video
 category_id: 1
+evaluation_frame_source: annotation_image_ids
 scenarios:
-  - id: webpage
-    display_name: Webpage
-    paper_name: Video1_Webpage
-    video: 20240509_160438.mp4
-    annotation: data/sample/annotations/webpage.json
-    image_id_prefix: "20240509_160438"
-  - id: bilibili
+  - id: scene_01
     display_name: Bilibili
-    paper_name: Video2_Bilibili
+    legacy_case_id: Video1_Webpage
+    video: 20240509_160438.mp4
+    annotation: data/sample/annotations/scene_01.json
+    image_id_prefix: "20240509_160438"
+    evaluated_frames: 882
+    positive_frames: 859
+    negative_frames: 23
+  - id: scene_02
+    display_name: Webpage
+    legacy_case_id: Video2_Bilibili
     video: 20240509_151154.mp4
-    annotation: data/sample/annotations/bilibili.json
+    annotation: data/sample/annotations/scene_02.json
     image_id_prefix: "20240509_151154"
-  - id: excel
+    evaluated_frames: 442
+    positive_frames: 442
+    negative_frames: 0
+  - id: scene_03
     display_name: Excel
-    paper_name: Video3_Excel
+    legacy_case_id: Video3_Excel
     video: 20240509_160140.mp4
-    annotation: data/sample/annotations/excel.json
+    annotation: data/sample/annotations/scene_03.json
     image_id_prefix: "20240509_160140"
-  - id: ppt
+    evaluated_frames: 726
+    positive_frames: 726
+    negative_frames: 0
+  - id: scene_04
     display_name: PPT
-    paper_name: Video4_PPT
+    legacy_case_id: Video4_PPT
     video: 01.mp4
-    annotation: data/sample/annotations/ppt.json
+    annotation: data/sample/annotations/scene_04.json
     image_id_prefix: "20250125_1"
+    decoded_frames: 1698
+    evaluated_frames: 1348
+    positive_frames: 1304
+    negative_frames: 44
+    frames_outside_evaluation: 350
     notes: >
-      Paper evaluation uses this annotation (1348 images, 1304 boxes).
-      A larger similarly named JSON exists in the local archive and is not this file.
+      Localization metrics use the 1348 image_id values in the annotation JSON.
+      The remaining 350 decoded frames are excluded from scoring and are not
+      treated as negatives. A larger similarly named JSON exists only in the
+      local archive and is not this file.

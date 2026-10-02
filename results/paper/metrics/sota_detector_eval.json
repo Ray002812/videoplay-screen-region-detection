@@ -1,117 +1,183 @@
 [
   {
-    "name": "sota_yolov8n",
+    "experiment_id": "baseline_yolov8n",
+    "legacy_run_id": "sota_yolov8n",
+    "checkpoint_in_release": false,
     "image_test_mAP50_95": 0.9919146169746197,
     "official_videos": [
       {
-        "case": "Video1_Webpage",
-        "n_frames": 882,
+        "scene_id": "scene_01",
+        "display_name": "Bilibili",
+        "legacy_case_id": "Video1_Webpage",
+        "image_id_prefix": "20240509_160438",
+        "decoded_frames": 882,
+        "evaluated_frames": 882,
         "mAP50_95": 0.7744618768046537,
         "mAP50": 0.776507658485478,
-        "n_pred": 3856,
-        "n_gt_images": 882
+        "n_predictions_all_frames": 3856,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video2_Bilibili",
-        "n_frames": 442,
+        "scene_id": "scene_02",
+        "display_name": "Webpage",
+        "legacy_case_id": "Video2_Bilibili",
+        "image_id_prefix": "20240509_151154",
+        "decoded_frames": 442,
+        "evaluated_frames": 442,
         "mAP50_95": 0.9900990099009901,
         "mAP50": 0.9900990099009901,
-        "n_pred": 441,
-        "n_gt_images": 442
+        "n_predictions_all_frames": 441,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video3_Excel",
-        "n_frames": 726,
+        "scene_id": "scene_03",
+        "display_name": "Excel",
+        "legacy_case_id": "Video3_Excel",
+        "image_id_prefix": "20240509_160140",
+        "decoded_frames": 726,
+        "evaluated_frames": 726,
         "mAP50_95": 1.0,
         "mAP50": 1.0,
-        "n_pred": 726,
-        "n_gt_images": 726
+        "n_predictions_all_frames": 726,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video4_PPT",
-        "n_frames": 1698,
+        "scene_id": "scene_04",
+        "display_name": "PPT",
+        "legacy_case_id": "Video4_PPT",
+        "image_id_prefix": "20250125_1",
+        "decoded_frames": 1698,
+        "evaluated_frames": 1348,
+        "positive_frames": 1304,
+        "negative_frames": 44,
+        "frames_outside_evaluation": 350,
+        "evaluation_frame_source": "annotation_image_ids",
         "mAP50_95": 0.9828857548733174,
         "mAP50": 0.9884936451136195,
-        "n_pred": 1696,
-        "n_gt_images": 1348
+        "n_predictions_all_frames": 1696,
+        "n_predictions_evaluated_frames": null
       }
     ],
     "mean_mAP50_95": 0.9368616603947403
   },
   {
-    "name": "sota_yolo11n",
+    "experiment_id": "baseline_yolo11n",
+    "legacy_run_id": "sota_yolo11n",
+    "checkpoint_in_release": false,
     "image_test_mAP50_95": 0.9916999811493946,
     "official_videos": [
       {
-        "case": "Video1_Webpage",
-        "n_frames": 882,
+        "scene_id": "scene_01",
+        "display_name": "Bilibili",
+        "legacy_case_id": "Video1_Webpage",
+        "image_id_prefix": "20240509_160438",
+        "decoded_frames": 882,
+        "evaluated_frames": 882,
         "mAP50_95": 0.7569086025321278,
         "mAP50": 0.7571586297927448,
-        "n_pred": 4025,
-        "n_gt_images": 882
+        "n_predictions_all_frames": 4025,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video2_Bilibili",
-        "n_frames": 442,
+        "scene_id": "scene_02",
+        "display_name": "Webpage",
+        "legacy_case_id": "Video2_Bilibili",
+        "image_id_prefix": "20240509_151154",
+        "decoded_frames": 442,
+        "evaluated_frames": 442,
         "mAP50_95": 0.9900990099009901,
         "mAP50": 0.9900990099009901,
-        "n_pred": 441,
-        "n_gt_images": 442
+        "n_predictions_all_frames": 441,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video3_Excel",
-        "n_frames": 726,
+        "scene_id": "scene_03",
+        "display_name": "Excel",
+        "legacy_case_id": "Video3_Excel",
+        "image_id_prefix": "20240509_160140",
+        "decoded_frames": 726,
+        "evaluated_frames": 726,
         "mAP50_95": 1.0,
         "mAP50": 1.0,
-        "n_pred": 726,
-        "n_gt_images": 726
+        "n_predictions_all_frames": 726,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video4_PPT",
-        "n_frames": 1698,
+        "scene_id": "scene_04",
+        "display_name": "PPT",
+        "legacy_case_id": "Video4_PPT",
+        "image_id_prefix": "20250125_1",
+        "decoded_frames": 1698,
+        "evaluated_frames": 1348,
+        "positive_frames": 1304,
+        "negative_frames": 44,
+        "frames_outside_evaluation": 350,
+        "evaluation_frame_source": "annotation_image_ids",
         "mAP50_95": 0.9586525768459044,
         "mAP50": 0.9692229556369664,
-        "n_pred": 1521,
-        "n_gt_images": 1348
+        "n_predictions_all_frames": 1521,
+        "n_predictions_evaluated_frames": null
       }
     ],
     "mean_mAP50_95": 0.9264150473197555
   },
   {
-    "name": "sota_yolov10n",
+    "experiment_id": "baseline_yolov10n",
+    "legacy_run_id": "sota_yolov10n",
+    "checkpoint_in_release": false,
     "image_test_mAP50_95": 0.9929073143604038,
     "official_videos": [
       {
-        "case": "Video1_Webpage",
-        "n_frames": 882,
+        "scene_id": "scene_01",
+        "display_name": "Bilibili",
+        "legacy_case_id": "Video1_Webpage",
+        "image_id_prefix": "20240509_160438",
+        "decoded_frames": 882,
+        "evaluated_frames": 882,
         "mAP50_95": 0.7159322840992589,
         "mAP50": 0.7185323040052403,
-        "n_pred": 4078,
-        "n_gt_images": 882
+        "n_predictions_all_frames": 4078,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video2_Bilibili",
-        "n_frames": 442,
+        "scene_id": "scene_02",
+        "display_name": "Webpage",
+        "legacy_case_id": "Video2_Bilibili",
+        "image_id_prefix": "20240509_151154",
+        "decoded_frames": 442,
+        "evaluated_frames": 442,
         "mAP50_95": 0.9900990099009901,
         "mAP50": 0.9900990099009901,
-        "n_pred": 441,
-        "n_gt_images": 442
+        "n_predictions_all_frames": 441,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video3_Excel",
-        "n_frames": 726,
+        "scene_id": "scene_03",
+        "display_name": "Excel",
+        "legacy_case_id": "Video3_Excel",
+        "image_id_prefix": "20240509_160140",
+        "decoded_frames": 726,
+        "evaluated_frames": 726,
         "mAP50_95": 0.9997811683994332,
         "mAP50": 0.9997811683994333,
-        "n_pred": 743,
-        "n_gt_images": 726
+        "n_predictions_all_frames": 743,
+        "n_predictions_evaluated_frames": null
       },
       {
-        "case": "Video4_PPT",
-        "n_frames": 1698,
+        "scene_id": "scene_04",
+        "display_name": "PPT",
+        "legacy_case_id": "Video4_PPT",
+        "image_id_prefix": "20250125_1",
+        "decoded_frames": 1698,
+        "evaluated_frames": 1348,
+        "positive_frames": 1304,
+        "negative_frames": 44,
+        "frames_outside_evaluation": 350,
+        "evaluation_frame_source": "annotation_image_ids",
         "mAP50_95": 0.9722864804044633,
         "mAP50": 0.9722864804044633,
-        "n_pred": 1477,
-        "n_gt_images": 1348
+        "n_predictions_all_frames": 1477,
+        "n_predictions_evaluated_frames": null
       }
     ],
     "mean_mAP50_95": 0.9195247357010363

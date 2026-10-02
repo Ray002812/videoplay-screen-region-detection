@@ -10,8 +10,10 @@ weights/videoplay-v1.0/openvino-int8/metadata.yaml
 
 Keep the three files together. Inference loads the XML/BIN pair by the `best` stem.
 
-SHA-256 values are recorded in `manifest.json`. `metadata.yaml` still contains the original export description string from the training machine; it is not a runtime path.
+SHA-256 values are recorded in `manifest.json`. Git stores this directory as binary (`-text`) so XML and YAML keep the original export bytes.
 
-This package does not include `.pt` checkpoints. Train and export locally if you need FP32 PyTorch weights.
+The original export metadata is preserved for provenance. Its historical training path is descriptive and is not required for inference.
+
+This package does not include `.pt` checkpoints except as referenced by the OpenVINO export. Ablation and baseline PyTorch weights remain in the local research archive. Train and export locally if you need new FP32 checkpoints.
 
 Place optional downloads under `weights/downloads/` (ignored by Git).

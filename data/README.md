@@ -4,10 +4,12 @@ This repository does not contain the full image dataset or the evaluation videos
 
 ## What is included
 
-- `sample/annotations/`: COCO-style boxes for four held-out screen recordings used in the paper tables.
-- `configs/evaluation/scenarios.yaml`: scene id, display name, video file name, annotation path, and `image_id` prefix.
+- `sample/annotations/scene_01.json` … `scene_04.json`: COCO-style boxes for four held-out screen recordings.
+- [configs/evaluation/scenarios.yaml](../configs/evaluation/scenarios.yaml): stable scene id, display name, `legacy_case_id`, video file name, annotation path, and `image_id` prefix.
 
-PPT evaluation uses `sample/annotations/ppt.json` (1348 images, 1304 boxes). A larger JSON with a similar name exists only in the local research archive and is not this file.
+Display names follow the manuscript: `scene_01` is Bilibili (`20240509_160438`), `scene_02` is Webpage (`20240509_151154`). `legacy_case_id` records the original evaluation-script labels (`Video1_Webpage`, `Video2_Bilibili`) and is not the display name.
+
+PPT (`scene_04`) lists 1348 frames: 1304 positive and 44 negative. The recording has 1698 decoded frames; the extra 350 frames are outside this evaluation set. A larger similarly named JSON exists only in the local research archive and is not this file.
 
 ## What is not included
 

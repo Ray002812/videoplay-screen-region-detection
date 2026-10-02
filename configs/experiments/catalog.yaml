@@ -1,0 +1,144 @@
+# Mapping between public experiment_id values and archived local runs.
+# Training counts come from each run's args.yaml and results.csv.
+# Do not treat configs/training/noleak.yaml max_epochs=300 as the budget of these tables.
+source_archive: local F:/video/runs/noleak100
+experiments:
+  - experiment_id: videoplay
+    legacy_run_id: abl_videoplay
+    model_config: configs/models/videoplay.yaml
+    training:
+      max_epochs: 100
+      completed_epochs: 60
+      best_epoch: 60
+      stop_reason: >
+        results.csv ends at epoch 60 while args.yaml lists epochs 100.
+        The best mAP50-95 in that file is also epoch 60, so a patience=20
+        early stop is not established from the CSV.
+    evaluation:
+      backend: openvino
+      precision: int8
+      temporal_gate: true
+      metrics_file: results/paper/metrics/videoplay_motion_eval.json
+    artifact:
+      manifest: weights/manifest.json
+      checkpoint_in_release: true
+  - experiment_id: ablation_baseline
+    legacy_run_id: abl_baseline
+    model_config: configs/models/yolo11_ablation_baseline.yaml
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 49
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/ablation_detector_eval.json
+    artifact:
+      checkpoint_in_release: false
+  - experiment_id: ablation_no_p3
+    legacy_run_id: abl_nop3
+    model_config: configs/models/yolo11_ablation_nop3.yaml
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 49
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/ablation_detector_eval.json
+    artifact:
+      checkpoint_in_release: false
+  - experiment_id: ablation_half_channels
+    legacy_run_id: abl_ch14
+    model_config: configs/models/ablation_half_channels.yaml
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 50
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/ablation_detector_eval.json
+    artifact:
+      checkpoint_in_release: false
+  - experiment_id: ablation_dwconv
+    legacy_run_id: abl_dwconv
+    model_config: configs/models/yolo11_ablation_dwconv.yaml
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 50
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/ablation_detector_eval.json
+    artifact:
+      checkpoint_in_release: false
+  - experiment_id: ablation_relu
+    legacy_run_id: abl_relu
+    model_config: configs/models/yolo11_ablation_relu.yaml
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 50
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/ablation_detector_eval.json
+    artifact:
+      checkpoint_in_release: false
+  - experiment_id: baseline_yolov8n
+    legacy_run_id: sota_yolov8n
+    model_config: yolov8n.pt
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 39
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/sota_detector_eval.json
+    artifact:
+      checkpoint_in_release: false
+  - experiment_id: baseline_yolo11n
+    legacy_run_id: sota_yolo11n
+    model_config: yolo11n.pt
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 47
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/sota_detector_eval.json
+    artifact:
+      checkpoint_in_release: false
+  - experiment_id: baseline_yolov10n
+    legacy_run_id: sota_yolov10n
+    model_config: yolov10n.pt
+    training:
+      max_epochs: 50
+      completed_epochs: 50
+      best_epoch: 43
+      stop_reason: reached configured max_epochs
+    evaluation:
+      backend: pytorch
+      precision: fp32
+      temporal_gate: false
+      metrics_file: results/paper/metrics/sota_detector_eval.json
+    artifact:
+      checkpoint_in_release: false

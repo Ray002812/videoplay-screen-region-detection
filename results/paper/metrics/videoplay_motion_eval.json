@@ -1,38 +1,67 @@
-[
-  {
-    "case": "Video1_Webpage",
-    "mAP50_95": 0.7936115658864004,
-    "mAP50": 0.8228759130829284,
-    "n_pred": 880,
-    "n_gt_images": 882,
-    "fps": 93.157089977001,
-    "e2e_ms": 10.734556009069026
-  },
-  {
-    "case": "Video2_Bilibili",
-    "mAP50_95": 0.9465346534653465,
-    "mAP50": 0.9504950495049505,
-    "n_pred": 424,
-    "n_gt_images": 442,
-    "fps": 100.82425424638713,
-    "e2e_ms": 9.91824841626174
-  },
-  {
-    "case": "Video3_Excel",
-    "mAP50_95": 0.8871241502030387,
-    "mAP50": 0.8910891089108911,
-    "n_pred": 667,
-    "n_gt_images": 726,
-    "fps": 115.2983377048069,
-    "e2e_ms": 8.67315192835004
-  },
-  {
-    "case": "Video4_PPT",
-    "mAP50_95": 0.8892071867202488,
-    "mAP50": 0.9814596236952857,
-    "n_pred": 1382,
-    "n_gt_images": 1348,
-    "fps": 34.85076105707679,
-    "e2e_ms": 28.693777974095067
-  }
-]
+{
+  "experiment_id": "videoplay",
+  "legacy_run_id": "abl_videoplay",
+  "checkpoint_in_release": true,
+  "backend": "openvino",
+  "precision": "int8",
+  "temporal_gate": true,
+  "scenes": [
+    {
+      "scene_id": "scene_01",
+      "display_name": "Bilibili",
+      "legacy_case_id": "Video1_Webpage",
+      "image_id_prefix": "20240509_160438",
+      "evaluated_frames": 882,
+      "mAP50_95": 0.7936115658864004,
+      "mAP50": 0.8228759130829284,
+      "fps": 93.157089977001,
+      "e2e_ms": 10.734556009069026,
+      "n_predictions_all_frames": 880,
+      "n_predictions_evaluated_frames": null
+    },
+    {
+      "scene_id": "scene_02",
+      "display_name": "Webpage",
+      "legacy_case_id": "Video2_Bilibili",
+      "image_id_prefix": "20240509_151154",
+      "evaluated_frames": 442,
+      "mAP50_95": 0.9465346534653465,
+      "mAP50": 0.9504950495049505,
+      "fps": 100.82425424638713,
+      "e2e_ms": 9.91824841626174,
+      "n_predictions_all_frames": 424,
+      "n_predictions_evaluated_frames": null
+    },
+    {
+      "scene_id": "scene_03",
+      "display_name": "Excel",
+      "legacy_case_id": "Video3_Excel",
+      "image_id_prefix": "20240509_160140",
+      "evaluated_frames": 726,
+      "mAP50_95": 0.8871241502030387,
+      "mAP50": 0.8910891089108911,
+      "fps": 115.2983377048069,
+      "e2e_ms": 8.67315192835004,
+      "n_predictions_all_frames": 667,
+      "n_predictions_evaluated_frames": null
+    },
+    {
+      "scene_id": "scene_04",
+      "display_name": "PPT",
+      "legacy_case_id": "Video4_PPT",
+      "image_id_prefix": "20250125_1",
+      "evaluated_frames": 1348,
+      "decoded_frames": 1698,
+      "positive_frames": 1304,
+      "negative_frames": 44,
+      "frames_outside_evaluation": 350,
+      "evaluation_frame_source": "annotation_image_ids",
+      "mAP50_95": 0.8892071867202488,
+      "mAP50": 0.9814596236952857,
+      "fps": 34.85076105707679,
+      "e2e_ms": 28.693777974095067,
+      "n_predictions_all_frames": 1382,
+      "n_predictions_evaluated_frames": null
+    }
+  ]
+}

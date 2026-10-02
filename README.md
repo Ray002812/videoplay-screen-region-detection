@@ -50,15 +50,15 @@ weights/videoplay-v1.0/openvino-int8/best
 
 which loads `best.xml` and `best.bin`. SHA-256 values are in [weights/manifest.json](weights/manifest.json).
 
-This is not the older local export whose BIN was about 2.3 MiB. Paper tables in `results/paper/metrics` correspond to the 133,960-byte BIN in this folder.
+This is not the older local export whose BIN was about 2.3 MiB. The original export `metadata.yaml` is kept for provenance; its historical training path is not used at inference time.
 
 ## Run a video
 
 ```text
-python scripts/infer_video.py --video path/to/clip.mp4 --video-name 20240509_160438 --output outputs/webpage_pred.json
+python scripts/infer_video.py --video path/to/20240509_160438.mp4 --video-name 20240509_160438 --output outputs/scene_01_pred.json
 ```
 
-`--video-name` must match the annotation `image_id` prefix in [configs/evaluation/scenarios.yaml](configs/evaluation/scenarios.yaml). Frame indices start at 1.
+`--video-name` must match the annotation `image_id` prefix in [configs/evaluation/scenarios.yaml](configs/evaluation/scenarios.yaml). Frame indices start at 1. Scene `scene_01` is Bilibili (`20240509_160438`); `scene_02` is Webpage (`20240509_151154`).
 
 Motion thresholds default to T=25, T1=160, T2=3, T3=5, buffer=5. Pass `--no-motion` for detector boxes only.
 
@@ -72,7 +72,7 @@ python scripts/benchmark.py
 
 Full images and MP4 files are not in Git. [data/README.md](data/README.md) explains how to request them and how `scripts/prepare_dataset.py` builds a source-disjoint split (`--apply` actually writes and may delete hash-duplicate train files).
 
-The four evaluation JSONs under `data/sample/annotations/` are the paper ground truth. PPT uses 1348 images / 1304 boxes.
+The four evaluation JSONs under `data/sample/annotations/` are the paper ground truth. PPT (`scene_04`) lists 1348 frames: 1304 positive and 44 negative. AP is computed only on those `image_id` values.
 
 ## Train, export, evaluate
 
@@ -81,10 +81,10 @@ python scripts/prepare_dataset.py --source-images path/to/images --out path/to/n
 python scripts/prepare_dataset.py --source-images path/to/images --out path/to/noleak --apply
 python scripts/train.py --data path/to/noleak/video_data_noleak.yaml --only videoplay
 python scripts/export_openvino.py --weights outputs/train/videoplay/weights/best.pt --data path/to/noleak/video_data_noleak.yaml
-python scripts/evaluate.py --pred outputs/webpage_pred.json --gt data/sample/annotations/webpage.json
+python scripts/evaluate.py --pred outputs/scene_01_pred.json --gt data/sample/annotations/scene_01.json
 ```
 
-Job names and architecture YAML files are listed in [configs/training/noleak.yaml](configs/training/noleak.yaml). Experiment folder `abl_ch14` in the research archive is `ablation_half_channels` here (width 0.25, not 1/4 of YOLO11n in the informal sense of the old name).
+[configs/training/noleak.yaml](configs/training/noleak.yaml) is the default for a **new** run (`max_epochs: 300`). It does not match the archived paper tables. Those runs are listed in [configs/experiments/catalog.yaml](configs/experiments/catalog.yaml): VideoPlay was configured for 100 epochs and the log ends at epoch 60; the other suite jobs were configured for 50 epochs and completed 50. `legacy_run_id` is the original folder name (`abl_ch14`, `sota_yolov8n`, ...).
 
 ## Reproduce paper video metrics
 
@@ -96,14 +96,16 @@ python scripts/reproduce.py --video-root path/to/videos
 
 Recorded numbers for the released INT8 model plus the temporal gate are in [results/paper/metrics/videoplay_motion_eval.json](results/paper/metrics/videoplay_motion_eval.json).
 
-| Scene    | AP50:95 | AP50  | FPS (recorded) |
-|----------|---------|-------|----------------|
-| Webpage  | 0.794   | 0.823 | 93.2           |
-| Bilibili | 0.947   | 0.950 | 100.8          |
-| Excel    | 0.887   | 0.891 | 115.3          |
-| PPT      | 0.889   | 0.981 | 34.9           |
+| id | Display name | AP50:95 | AP50 | FPS (recorded) |
+|----|--------------|---------|------|----------------|
+| scene_01 | Bilibili | 0.794 | 0.823 | 93.2 |
+| scene_02 | Webpage | 0.947 | 0.950 | 100.8 |
+| scene_03 | Excel | 0.887 | 0.891 | 115.3 |
+| scene_04 | PPT | 0.889 | 0.981 | 34.9 |
 
-FPS depends on CPU load and is not a guaranteed SLA.
+FPS is timed over decoded frames and is not a guaranteed SLA. PPT AP uses 1348 annotated frames out of 1698 decoded frames.
+
+Ablation and YOLO-nano detector tables are separate files and separate checkpoints; see [results/paper/README.md](results/paper/README.md).
 
 ## Tests
 
@@ -121,4 +123,5 @@ AGPL-3.0-or-later ([LICENSE](LICENSE)), because the work includes a modified Ult
 - Four evaluation recordings; results do not establish general playback-state recognition.
 - Temporal filtering can drop low-motion video (Excel AP falls relative to detector-only).
 - Training images are not redistributed here.
+- Archived tables were not produced under the 300-epoch retrain default.
 - Root `CITATION.cff` is for this software and manuscript, not a journal DOI.

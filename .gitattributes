@@ -2,3 +2,6 @@
 *.py text eol=lf
 *.sh text eol=lf
 *.bat text eol=crlf
+
+# Keep OpenVINO XML/BIN/metadata as original export bytes.
+weights/videoplay-v1.0/openvino-int8/* -text

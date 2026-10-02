@@ -17,14 +17,21 @@ ULTRA = ROOT / "third_party" / "ultralytics"
 DEFAULT_CFG = ROOT / "configs" / "training" / "noleak.yaml"
 
 
-def load_jobs(cfg_path: Path):
-    text = cfg_path.read_text(encoding="utf-8")
-    try:
-        import yaml
+def abs_from_cwd(path_str: str, cwd: Path) -> Path:
+    path = Path(path_str)
+    if not path.is_absolute():
+        path = cwd / path
+    return path.resolve()
 
-        data = yaml.safe_load(text)
-    except Exception:
-        data = {"jobs": [], "epochs": 300, "imgsz": 480, "batch": 16, "workers": 4, "amp": True, "project": "outputs/train"}
+
+def load_jobs(cfg_path: Path):
+    if not cfg_path.is_file():
+        raise SystemExit(f"training config not found: {cfg_path}")
+    import yaml
+
+    data = yaml.safe_load(cfg_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise SystemExit(f"invalid training config: {cfg_path}")
     return data
 
 
@@ -37,7 +44,7 @@ def resolve_model(model: str) -> str:
     return model
 
 
-def train_one(name: str, model: str, epochs: int, batch: int, imgsz: int, workers: int, amp: bool, resume: bool, data: str, project: Path):
+def train_one(name, model, epochs, batch, imgsz, workers, amp, resume, data, project, device, patience, seed, close_mosaic):
     os.chdir(ULTRA)
     env = os.environ.copy()
     env["PYTHONPATH"] = str(ULTRA) + os.pathsep + str(ROOT / "src") + os.pathsep + env.get("PYTHONPATH", "")
@@ -53,7 +60,7 @@ def train_one(name: str, model: str, epochs: int, batch: int, imgsz: int, worker
         epochs=epochs,
         imgsz=imgsz,
         batch=batch,
-        device=0,
+        device=device,
         workers=workers,
         project=str(project),
         name=name,
@@ -61,11 +68,11 @@ def train_one(name: str, model: str, epochs: int, batch: int, imgsz: int, worker
         resume=use_resume,
         pretrained=True,
         single_cls=True,
-        patience=20,
+        patience=patience,
         amp=amp,
-        seed=0,
+        seed=seed,
         deterministic=True,
-        close_mosaic=10,
+        close_mosaic=close_mosaic,
         plots=False,
         val=True,
     )
@@ -78,24 +85,63 @@ def train_one(name: str, model: str, epochs: int, batch: int, imgsz: int, worker
 def parse_args():
     p = argparse.ArgumentParser(description="Train VideoPlay suite")
     p.add_argument("--config", default=str(DEFAULT_CFG))
-    p.add_argument("--data", required=True, help="Ultralytics dataset YAML with a machine-local path")
+    p.add_argument("--data", required=True, help="Ultralytics dataset YAML resolved from the launch working directory")
     p.add_argument("--only", default="videoplay")
     p.add_argument("--skip", nargs="*", default=[])
-    p.add_argument("--epochs", type=int, default=None)
-    p.add_argument("--batch", type=int, default=16)
-    p.add_argument("--imgsz", type=int, default=480)
-    p.add_argument("--workers", type=int, default=4)
-    p.add_argument("--amp", action="store_true", default=True)
+    p.add_argument("--epochs", type=int, default=None, help="Override config max_epochs")
+    p.add_argument("--batch", type=int, default=None)
+    p.add_argument("--imgsz", type=int, default=None)
+    p.add_argument("--workers", type=int, default=None)
+    p.add_argument("--device", default=None)
+    p.add_argument("--amp", action="store_true", default=None)
+    p.add_argument("--no-amp", action="store_true")
     p.add_argument("--resume", action="store_true")
     p.add_argument("--project", default=None)
     p.add_argument("--worker", action="store_true")
     return p.parse_args()
 
 
+def settings_from_cfg(cfg, args):
+    epochs = args.epochs if args.epochs is not None else int(cfg.get("max_epochs", cfg.get("epochs", 300)))
+    batch = args.batch if args.batch is not None else int(cfg.get("batch", 16))
+    imgsz = args.imgsz if args.imgsz is not None else int(cfg.get("imgsz", 480))
+    workers = args.workers if args.workers is not None else int(cfg.get("workers", 4))
+    device = args.device if args.device is not None else cfg.get("device", 0)
+    if args.no_amp:
+        amp = False
+    elif args.amp:
+        amp = True
+    else:
+        amp = bool(cfg.get("amp", True))
+    patience = int(cfg.get("patience", 20))
+    seed = int(cfg.get("seed", 0))
+    close_mosaic = int(cfg.get("close_mosaic", 10))
+    return {
+        "epochs": epochs,
+        "batch": batch,
+        "imgsz": imgsz,
+        "workers": workers,
+        "device": device,
+        "amp": amp,
+        "patience": patience,
+        "seed": seed,
+        "close_mosaic": close_mosaic,
+    }
+
+
 def main():
     args = parse_args()
-    cfg = load_jobs(Path(args.config))
-    project = Path(args.project) if args.project else ROOT / cfg.get("project", "outputs/train")
+    launch_cwd = Path.cwd()
+    cfg_path = abs_from_cwd(args.config, launch_cwd)
+    data_path = abs_from_cwd(args.data, launch_cwd)
+    if not data_path.is_file():
+        raise SystemExit(f"dataset yaml not found: {data_path}")
+    cfg = load_jobs(cfg_path)
+    if args.project:
+        project = abs_from_cwd(args.project, launch_cwd)
+    else:
+        project = abs_from_cwd(str(cfg.get("project", "outputs/train")), launch_cwd)
+    settings = settings_from_cfg(cfg, args)
     jobs = cfg.get("jobs", [])
     if args.only != "all":
         jobs = [j for j in jobs if j["name"] == args.only]
@@ -104,24 +150,26 @@ def main():
         raise SystemExit(f"no matching job: {args.only}")
     if args.worker:
         job = jobs[0]
-        epochs = args.epochs if args.epochs is not None else int(cfg.get("epochs", 300))
         train_one(
             job["name"],
             job["model"],
-            epochs,
-            args.batch,
-            args.imgsz,
-            args.workers,
-            args.amp,
+            settings["epochs"],
+            settings["batch"],
+            settings["imgsz"],
+            settings["workers"],
+            settings["amp"],
             args.resume,
-            args.data,
+            str(data_path),
             project,
+            settings["device"],
+            settings["patience"],
+            settings["seed"],
+            settings["close_mosaic"],
         )
         return
     project.mkdir(parents=True, exist_ok=True)
     py = sys.executable
     for job in jobs:
-        epochs = args.epochs if args.epochs is not None else int(cfg.get("epochs", 300))
         log = project / f"{job['name']}.log"
         cmd = [
             py,
@@ -130,22 +178,26 @@ def main():
             "--only",
             job["name"],
             "--data",
-            args.data,
+            str(data_path),
             "--config",
-            args.config,
+            str(cfg_path),
             "--epochs",
-            str(epochs),
+            str(settings["epochs"]),
             "--batch",
-            str(args.batch),
+            str(settings["batch"]),
             "--imgsz",
-            str(args.imgsz),
+            str(settings["imgsz"]),
             "--workers",
-            str(args.workers),
+            str(settings["workers"]),
+            "--device",
+            str(settings["device"]),
             "--project",
             str(project),
         ]
-        if args.amp:
+        if settings["amp"]:
             cmd.append("--amp")
+        else:
+            cmd.append("--no-amp")
         if args.resume:
             cmd.append("--resume")
         env = os.environ.copy()
